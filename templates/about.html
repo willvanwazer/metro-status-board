@@ -1,0 +1,26 @@
+{% extends "bootstrap_base.html" %}
+
+{% block title %}About | MetroStatusBoard {% endblock title %}
+
+{% block body_content %}
+
+{% set page = "about" %}
+{% include "header.html" %}
+
+<div class="container">
+    <div class="content">
+        <div class="page-header">
+            <h2>About</h2>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <p><a href="http://proudlymadeindc.com/">Proudly Made in DC</a> by <a href="http://willvanwazer.com/">Will Van Wazer</a>. This has absolutley nothing to do with my employer.</p>
+                <p>The predictions data comes from Metro's <a href="http://developer.wmata.com/page">Transparent Data Sets API</a>, which, while a little rough around the edges, is generally pretty good.</p>
+            </div>
+        </div> <!-- row -->
+    </div><!-- content -->
+</div> <!-- container -->
+
+{% include "gagues.html" %}
+
+{% endblock %}

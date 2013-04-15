@@ -1,0 +1,42 @@
+{% extends "bootstrap_base.html" %}
+
+{% block title %}MetroStatusBoard{% endblock title %}
+
+{% block body_content %}
+
+{% include "header.html" %}
+
+<div class="container">
+    <div class="content">
+        <div class="page-header">
+            <h2>Like <a href="http://panic.com/statusboard/">Status Board?</a> Want to put Metro data on it?</h2>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-text="Like @panic's Status Board? Want Metro Data on it?">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <h4>Add a list of upcoming arrivals at your selected Station. <small>Opens directly in Status Board.</small></h4>
+            </div>
+        {% for column in stations|batch(22) %}
+            <div class="span3">
+                <ul class="unstyled">
+                {% for station in column %}
+                    <li>
+                        {% for x in range(1,5) %}
+                            {% if station['LineCode' + x|string ] not in ['', 'None', None] %}
+                                <img src="http://www.wmata.com/img/icon-marble-{{ station['LineCode' + x|string]|wmata_full_name }}.gif" />
+                            {% endif %}
+                        {% endfor %}
+                        <a href="{{ url_for('station_arrivals', station_code=station.Code, _external=True)|status_board_url }}">{{ station.Name }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+        </div> <!-- row -->
+    </div><!-- content -->
+</div> <!-- container -->
+
+{% include "gagues.html" %}
+
+{% endblock %}

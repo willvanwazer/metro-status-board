@@ -1,0 +1,15 @@
+<table id="projects">
+    {% for group in arrivals|groupby('Group') %}
+        {% for arrival in group.list %}
+            {% if arrival['Line'] is defined and arrival['Line'] != "" %}
+            <tr>
+                <td class="projectIcon"><img src="http://www.wmata.com/img/icon-marble-{{ arrival['Line']|wmata_full_name }}.gif" /></td>
+                <td class="projectName">{{ arrival['DestinationName'] }}</td>
+                <td class="projectIcon">{{ arrival['Min'] }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</table>
+
+{% include "gagues.html" %}
