@@ -10,6 +10,7 @@ Bootstrap(app)
 
 
 WMATA_API_KEY = os.environ.get("WMATA_API_KEY", None)
+
 if WMATA_API_KEY is None:
     raise NotImplementedError("You must define a WMATA_API_KEY enviroment var")
 
